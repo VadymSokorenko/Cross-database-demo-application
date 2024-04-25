@@ -11,6 +11,8 @@ paths:
       summary: Get all users.
       description: Returns list of users aggregated from configured data sources. Optional filters may be applied.
       operationId: getUsers
+      tags:
+        - user
       parameters:
         - name: id
           in: query

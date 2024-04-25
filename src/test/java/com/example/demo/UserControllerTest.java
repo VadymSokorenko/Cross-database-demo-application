@@ -84,7 +84,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void apiCallTestWithParamsForFirstDatabase() {
+    public void testApiCallWithParamsForFirstDatabase() {
         given()
                 .contentType(ContentType.JSON)
                 .queryParam("username", "admin")
@@ -102,7 +102,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void apiCallTestWithParamsForSecondDatabase() {
+    public void testApiCallWithParamsForSecondDatabase() {
         given()
                 .contentType(ContentType.JSON)
                 .queryParam("id", "user")
