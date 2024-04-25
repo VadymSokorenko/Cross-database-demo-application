@@ -9,14 +9,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
-public class UsersService {
+public class UserService {
+
+    public static final String DATABASE_ERROR_MESSAGE = "Exception occurred while querying database name: {}, url: {}. Error message: [{}]";
 
     private final DataSourcePropertiesConfiguration dataSourcePropertiesConfiguration;
 
@@ -81,7 +86,10 @@ public class UsersService {
                             rs.getString(databaseOptions.getMapping().getUsername()),
                             rs.getString(databaseOptions.getMapping().getName()),
                             rs.getString(databaseOptions.getMapping().getSurname())));
-        } catch (Exception ignored) {
+        } catch (BadSqlGrammarException ignore) {
+        } catch (Exception e) {
+            log.info(DATABASE_ERROR_MESSAGE, databaseOptions.getName(),
+                    databaseOptions.getUrl(), e.getMessage());
         }
 
         return queryResult;

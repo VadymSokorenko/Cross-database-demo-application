@@ -132,6 +132,7 @@
                                 <useBeanValidation>true</useBeanValidation>
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <useResponseEntity>false</useResponseEntity>
+                                <useTags>true</useTags>
                             </configOptions>
                         </configuration>
                     </execution>
