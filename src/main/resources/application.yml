@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: demo
+data-sources:
+  - name: db_1
+    strategy: postgres
+    url: jdbc:postgresql://localhost:5432/demo_db_1
+    table: users
+    user: root
+    password: password
+    mapping:
+      id: user_id
+      username: login
+      name: first_name
+      surname: last_name
+  - name: db_2
+    strategy: postgres
+    url: jdbc:postgresql://localhost:5433/demo_db_2
+    table: employees
+    user: admin
+    password: admin
+    mapping:
+      id: ldap_login
+      username: ldap_login
+      name: name
+      surname: surname

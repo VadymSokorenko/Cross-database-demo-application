@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgres_demo_db_1:
+    image: postgres:latest
+    container_name: demo_db_1
+    restart: always
+    environment:
+    - POSTGRES_USER=root
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_DB=demo_db_1
+    ports:
+    - '5432:5432'
+    volumes:
+      - ./src/main/resources/sql/db_1_init.sql:/docker-entrypoint-initdb.d/db_1_init.sql
+  postgres_demo_db_2:
+    image: postgres:latest
+    container_name: demo_db_2
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=demo_db_2
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./src/main/resources/sql/db_2_init.sql:/docker-entrypoint-initdb.d/db_2_init.sql
